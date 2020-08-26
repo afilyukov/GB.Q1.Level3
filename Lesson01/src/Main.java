@@ -4,9 +4,9 @@ public class Main {
         t.doDemo();
 
         //Task 3
-        Box<Orange> boxOfOranges1 = new Box();
-        Box<Apple> boxOfApples1 = new Box();
-        Box<Apple> boxOfApples2 = new Box();
+        Box<Orange> boxOfOranges1 = new Box<>();
+        Box<Apple> boxOfApples1 = new Box<>();
+        Box<Apple> boxOfApples2 = new Box<>();
         boxOfApples1.add(new Apple());
         boxOfApples1.add(new Apple());
         boxOfApples1.add(new Apple());
