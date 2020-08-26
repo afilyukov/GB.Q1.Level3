@@ -15,6 +15,8 @@ public class Main {
         boxOfOranges1.add(new Orange());
         boxOfOranges1.add(new Orange());
 
+
+
         System.out.println("Вес коробки яблок1: " + boxOfApples1.getWeight());
         System.out.println("Вес коробки апельсинов1: " + boxOfOranges1.getWeight());
         System.out.println("Вес коробки яблок2: " + boxOfOranges1.getWeight());

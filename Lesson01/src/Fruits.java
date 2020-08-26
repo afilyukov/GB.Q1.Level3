@@ -1,7 +1,5 @@
-public class Fruits {
-    private static final float weightOfFruit = 0f;
+public interface Fruits {
 
-    public static float getWeightOfFruit() {
-        return weightOfFruit;
-    }
+    float getWeightOfFruit();
+
 }

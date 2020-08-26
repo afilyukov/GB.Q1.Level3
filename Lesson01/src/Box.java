@@ -14,11 +14,11 @@ public class Box <T extends Fruits> {
     public float getWeight(){
         float weight = 0;
         if (quantity > 0) {
-            if (content.get(0) instanceof Apple){    //не придумал\нашел более элегантного способа узнать тип генерика, которым был инициализирован класс(хранилка). Только через рефлексию, которую еще не проходили
-                return this.quantity * Apple.getWeightOfFruit();
-            } else {
-                return this.quantity * Orange.getWeightOfFruit();
-            }
+            //if (content.get(0) instanceof Apple){    //не придумал\нашел более элегантного способа узнать тип генерика, которым был инициализирован класс(хранилка). Только через рефлексию, которую еще не проходили
+                return this.quantity * content.get(0).getWeightOfFruit();
+            //} else {
+                //return this.quantity * Orange.getWeightOfFruit();
+            //}
         }
         return weight;
     }

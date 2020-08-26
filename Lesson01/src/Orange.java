@@ -1,7 +1,7 @@
-public class Orange extends Fruits {
-    private static final float weightOfFruit = 1.5f;
+public class Orange implements Fruits {
+    private final float weightOfFruit = 1.5f;
 
-    public static float getWeightOfFruit() {
+    public float getWeightOfFruit() {
         return weightOfFruit;
     }
 }
