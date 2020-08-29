@@ -1,43 +1,25 @@
-import com.mysql.cj.jdbc.Driver;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 
 public class DBConnector {
-    public ResultSet getAll (String query) {
-        //ToDO сделать getOneClint
-
-        //Deprecated
-        //try {
-        //    Class.forName("com.mysql.jdbc.Driver");
-        //} catch (ClassNotFoundException e) {
-        //    throw new RuntimeException("Driver not found");
-        //}
-
-        Connection connection;
-        ResultSet results;
+    static {
         try {
-            DriverManager.registerDriver(new Driver());
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:8889/GB.TestDB1?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "root");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            throw new RuntimeException("Driver Registration error");
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException throwable) {
+            throwable.printStackTrace();
+            throw new RuntimeException("Driver not found");
         }
+    }
 
+    public static Connection getConnection(String connectionString) {
         try {
-            Statement statement = connection.createStatement();
-            results = statement.executeQuery(query);
-            return results;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            throw new RuntimeException("Statement error");
+            return DriverManager.getConnection(connectionString, "root", "root");
+            //Statement statement = connection.createStatement();
+            //return results;
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+            throw new RuntimeException("Connection error");
         }
-
-
-
     }
 }

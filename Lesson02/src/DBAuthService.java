@@ -1,3 +1,5 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
@@ -8,22 +10,35 @@ public class DBAuthService implements AuthService{
 
     public DBAuthService() {
         records = new HashSet<>();
+        ResultSet results;
+        Connection connection = DBConnector.getConnection("jdbc:mysql://localhost:8889/GB.TestDB1?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        //PreparedStatement preparedStatement = null;
         try {
-        ResultSet results = new DBConnector().getAll("SELECT * FROM CLIENTS");
-
-        while (results.next()) {
-            records.add(new Record(
-                    results.getInt("id"),
-                    results.getString("name"),
-                    results.getString("login"),
-                    results.getString("password")
-                    )
-            );
-        }
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM CLIENTS");
+            results = preparedStatement.executeQuery();
+            while (results.next()) {
+                records.add(new Record(
+                                results.getInt("id"),
+                                results.getString("name"),
+                                results.getString("login"),
+                                results.getString("password")
+                        )
+                );
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            throw new RuntimeException("Statement error");
+            throw new RuntimeException("Cannot get sql records");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+                throw new RuntimeException("Cannot close connection");
+            }
         }
+
+
+
     }
 
     @Override
