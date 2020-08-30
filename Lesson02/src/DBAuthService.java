@@ -12,7 +12,6 @@ public class DBAuthService implements AuthService{
         records = new HashSet<>();
         ResultSet results;
         Connection connection = DBConnector.getConnection("jdbc:mysql://localhost:8889/GB.TestDB1?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-        //PreparedStatement preparedStatement = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM CLIENTS");
             results = preparedStatement.executeQuery();
