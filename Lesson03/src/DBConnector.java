@@ -6,7 +6,6 @@ public class DBConnector {
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-
         } catch (ClassNotFoundException throwable) {
           //  throwable.printStackTrace();
             throw new RuntimeException("Driver not found");
